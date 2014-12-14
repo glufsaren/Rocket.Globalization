@@ -1,5 +1,9 @@
 # README #
 
+http://rodadagar.com/
+http://www.samlogic.com/swedish-net-classes/classes/samlogic-calendar-library/class-swedish-calendar.htm
+
+
 This README would normally document whatever steps are necessary to get your application up and running.
 
 ### What is this repository for? ###
