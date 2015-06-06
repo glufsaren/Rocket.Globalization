@@ -34,17 +34,25 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="Should">
+      <HintPath>..\packages\Should.1.1.20\lib\Should.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CalendarTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="EasterHolidaysTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\rocket\Rocket.Test\Rocket.Test.csproj">
+      <Project>{3AD629B7-6D2F-42AB-920B-CD847AE97020}</Project>
+      <Name>Rocket.Test</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Rocket.Globalization\Rocket.Globalization.csproj">
       <Project>{AC7B4FBB-608B-4250-A0AE-E1AF784909DE}</Project>
       <Name>Rocket.Globalization</Name>

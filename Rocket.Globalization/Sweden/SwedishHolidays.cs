@@ -1,9 +1,9 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="SwedishHolidayFactory.cs" company="Borderline Studios">
+// <copyright file="SwedishHolidays.cs" company="Borderline Studios">
 //   Copyright © Borderline Studios. All rights reserved.
 // </copyright>
 // <summary>
-//   Defines the SwedishHolidayFactory type.
+//   Defines the SwedishHolidays type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
@@ -12,7 +12,7 @@ using System.Collections.Generic;
 
 using Rocket.Globalization.Computus;
 
-namespace Rocket.Globalization
+namespace Rocket.Globalization.Sweden
 {
     /* 
      * Första maj blev allmän helgdag i Sverige 1939, som den första icke-kristna helgen. 
@@ -31,17 +31,17 @@ namespace Rocket.Globalization
 
     // TODO: Byt namn!
     // TODO: LAZY!!!
-    public class SwedishHolidayFactory
+    public class SwedishHolidays : IHolidays
     {
         private readonly IDictionary<DateTime, Day> holidays = new Dictionary<DateTime, Day>();
 
         private readonly int year;
 
-        public SwedishHolidayFactory(int year)
+        public SwedishHolidays(int year)
         {
             this.year = year;
 
-            AddNewYearsDay();
+            //AddNewYearsDay();
         }
 
         private void AddNewYearsDay()
@@ -49,7 +49,7 @@ namespace Rocket.Globalization
             var newYearsDay = new Day(new DateTime(year, 01, 01))
                                   {
                                       IsHoliday = true,
-                                      Code = SwedishHolidayCode.NewYear,
+                                      Code = HolidayCode.NewYear,
                                       Name = "Nyårsdagen",
                                       WorkTimeReduction = 8
                                   };
@@ -85,10 +85,10 @@ namespace Rocket.Globalization
             {
                 var date = Easter;
 
-                while (date.DayOfWeek != DayOfWeek.Thursday)
-                {
-                    date = date.AddDays(-1);
-                }
+                //while (date.DayOfWeek != DayOfWeek.Thursday)
+                //{
+                //    date = date.AddDays(-1);
+                //}
 
                 return date;
             }
@@ -101,10 +101,10 @@ namespace Rocket.Globalization
             {
                 var date = Easter;
 
-                while (date.DayOfWeek != DayOfWeek.Friday)
-                {
-                    date = date.AddDays(-1);
-                }
+                //while (date.DayOfWeek != DayOfWeek.Friday)
+                //{
+                //    date = date.AddDays(-1);
+                //}
 
                 return date;
             }
@@ -118,10 +118,10 @@ namespace Rocket.Globalization
             {
                 var date = Easter;
 
-                while (date.DayOfWeek != DayOfWeek.Saturday)
-                {
-                    date = date.AddDays(-1);
-                }
+                //while (date.DayOfWeek != DayOfWeek.Saturday)
+                //{
+                //    date = date.AddDays(-1);
+                //}
 
                 return date;
             }
@@ -166,6 +166,11 @@ namespace Rocket.Globalization
             {
                 return new DateTime(year, 05, 01);
             }
+        }
+
+        public IEnumerable<Holiday> Get(int year)
+        {
+            yield break;
         }
     }
 }

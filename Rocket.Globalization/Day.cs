@@ -9,6 +9,8 @@
 
 using System;
 
+using Rocket.Globalization.Sweden;
+
 namespace Rocket.Globalization
 {
     public class Day
@@ -22,7 +24,7 @@ namespace Rocket.Globalization
         {
             get
             {
-                return Date.DayOfWeek;
+                return Date.DayOfWeek.ToDayOfWeek();
             }
         }
 
@@ -30,7 +32,7 @@ namespace Rocket.Globalization
 
         public int WorkTimeReduction { get; set; }
 
-        public SwedishHolidayCode Code { get; set; }
+        public HolidayCode Code { get; set; }
 
         public string Name { get; set; }
 
