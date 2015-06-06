@@ -11,6 +11,8 @@ using System;
 
 using NUnit.Framework;
 
+using Rocket.Globalization.Sweden;
+
 namespace Rocket.Globalization.Test
 {
 	[TestFixture]
@@ -30,7 +32,7 @@ namespace Rocket.Globalization.Test
 		[TestCase(1583, 4, 10)]
 		public void When_getting_date_for_easter_expect_date_returned(int year, int expectedMonth, int expectedDay)
 		{
-			var calendar = new SwedishHolidayFactory(year);
+			var calendar = new SwedishHolidays(year);
 
 			var easter = calendar.Easter;
 
@@ -40,7 +42,7 @@ namespace Rocket.Globalization.Test
 		[Test]
 		public void When_getting_maundy_thursday_expect_thursday_before_easter()
 		{
-			var calendar = new SwedishHolidayFactory(2014);
+			var calendar = new SwedishHolidays(2014);
 
 			var maundyThursday = calendar.MaundyThursday;
 
@@ -50,7 +52,7 @@ namespace Rocket.Globalization.Test
 		[Test]
 		public void When_getting_good_friday_expect_thursday_before_easter()
 		{
-			var calendar = new SwedishHolidayFactory(2014);
+			var calendar = new SwedishHolidays(2014);
 
 			var goodFriday = calendar.GoodFriday;
 
@@ -60,7 +62,7 @@ namespace Rocket.Globalization.Test
 		[Test]
 		public void When_getting_holy_saturday_expect_thursday_before_easter()
 		{
-			var calendar = new SwedishHolidayFactory(2014);
+			var calendar = new SwedishHolidays(2014);
 
 			var holySaturday = calendar.HolySaturday;
 
@@ -70,7 +72,7 @@ namespace Rocket.Globalization.Test
 		[Test]
 		public void When_getting_easter_monday_expect_thursday_before_easter()
 		{
-			var calendar = new SwedishHolidayFactory(2014);
+			var calendar = new SwedishHolidays(2014);
 
 			var easterMonday = calendar.EasterMonday;
 
