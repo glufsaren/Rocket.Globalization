@@ -15,20 +15,10 @@ namespace Rocket.Globalization
 {
     public class Day
     {
-        public Day(DateTime date)
+        public Day(HolidayCode code)
         {
-            Date = date;
+            Code = code;
         }
-
-        public DayOfWeek Weekday
-        {
-            get
-            {
-                return Date.DayOfWeek.ToDayOfWeek();
-            }
-        }
-
-        public DateTime Date { get; private set; }
 
         public int WorkTimeReduction { get; set; }
 
@@ -36,6 +26,8 @@ namespace Rocket.Globalization
 
         public string Name { get; set; }
 
-        public bool IsHoliday { get; set; }
+        public bool IsSunday { get; set; }
+
+        public bool IsSaturday { get; set; }
     }
 }

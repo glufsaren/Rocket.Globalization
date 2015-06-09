@@ -9,15 +9,13 @@
 
 using System;
 
-using Rocket.Globalization.Sweden;
-
 namespace Rocket.Globalization
 {
     public class DayOfWeekOffsetHoliday : Holiday
     {
-        public DayOfWeekOffsetHoliday(System.DayOfWeek dayOfWeek, DateTime dateTime, int number, HolidayCode code)
+        public DayOfWeekOffsetHoliday(DayOfWeek dayOfWeek, DateTime dateTime, int number, Day day)
         {
-            Code = code;
+            Day = day;
             DayOfWeek = dayOfWeek;
             DateTime = dateTime;
             Number = number;
@@ -42,9 +40,12 @@ namespace Rocket.Globalization
             Date = monday;
         }
 
-        public Direction Direction { get; set; }
+        internal DayOfWeekOffsetHoliday(Parameters parameters)
+            : this(parameters.DayOfWeek, parameters.Date, parameters.Number, parameters.Day)
+        {
+        }
 
-        public System.DayOfWeek DayOfWeek { get; set; }
+        public DayOfWeek DayOfWeek { get; set; }
 
         public DateTime DateTime { get; set; }
 
@@ -52,21 +53,16 @@ namespace Rocket.Globalization
 
         public override short WorkReduction { get; protected set; }
 
+        public override DateTime? Introduced { get; protected set; }
+
         public override DateTime? Depricated { get; protected set; }
     }
 
-    public enum Direction
+    internal static class Ext
     {
-        Back = -1,
-
-        Forward = 1
-    }
-
-    public static class Ext
-    {
-        public static DayOfWeek ToDayOfWeek(this System.DayOfWeek dayOfWeek)
+        public static DayOfWeekNegative ToDayOfWeek(this DayOfWeek dayOfWeek)
         {
-            return (DayOfWeek)Enum.Parse(typeof(DayOfWeek), dayOfWeek.ToString());
+            return (DayOfWeekNegative)Enum.Parse(typeof(DayOfWeekNegative), dayOfWeek.ToString());
         }
     }
 }

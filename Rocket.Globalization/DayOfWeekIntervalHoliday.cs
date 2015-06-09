@@ -21,6 +21,8 @@ namespace Rocket.Globalization
 
         public override short WorkReduction { get; protected set; }
 
+        public override DateTime? Introduced { get; protected set; }
+
         public override DateTime? Depricated { get; protected set; }
     }
 }

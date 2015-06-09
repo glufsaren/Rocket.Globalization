@@ -9,22 +9,20 @@
 
 using System;
 
-using Rocket.Globalization.Sweden;
-
 namespace Rocket.Globalization
 {
     public class FixedDateHoliday : Holiday
     {
-        public FixedDateHoliday(HolidayCode code, DateTime date)
+        public FixedDateHoliday(Day day, DateTime date)
         {
-            Code = code;
+            Day = day;
             Date = date;
         }
 
         public override short WorkReduction { get; protected set; }
 
-        public override DateTime? Depricated { get; protected set; }
+        public override DateTime? Introduced { get; protected set; }
 
-        
+        public override DateTime? Depricated { get; protected set; }
     }
 }

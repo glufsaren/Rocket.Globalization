@@ -41,9 +41,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CalendarTest.cs" />
+    <Compile Include="GaussAlgorithmComputusTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="EasterHolidaysTest.cs" />
+    <Compile Include="SwedishHolidaysTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

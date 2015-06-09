@@ -7,7 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
 using System.Collections.Generic;
 
 using Rocket.Globalization.Computus;
@@ -16,32 +15,130 @@ namespace Rocket.Globalization.Sweden
 {
     public class EasterHolidays : IHolidays
     {
+        private static Day Pentecost
+        {
+            get
+            {
+                return new Day(HolidayCode.Pentecost)
+                           {
+                               Name = "Pingstdagen",
+                               WorkTimeReduction = 8,
+                               IsSunday = true
+                           };
+            }
+        }
+
+        private static Day PentecostEve
+        {
+            get
+            {
+                return new Day(HolidayCode.PentecostEve)
+                           {
+                               Name = "Pingstafton",
+                               IsSaturday = true
+                           };
+            }
+        }
+
+        private static Day MaundyThursday
+        {
+            get
+            {
+                return new Day(HolidayCode.MaundyThursday)
+                           {
+                               Name = "Skärtorsdagen",
+                               WorkTimeReduction = 4
+                           };
+            }
+        }
+
+        private static Day GoodFriday
+        {
+            get
+            {
+                return new Day(HolidayCode.GoodFriday)
+                           {
+                               Name = "Långfredagen",
+                               WorkTimeReduction = 8,
+                               IsSunday = true
+                           };
+            }
+        }
+
+        private static Day HolySaturday
+        {
+            get
+            {
+                return new Day(HolidayCode.HolySaturday)
+                           {
+                               Name = "Påskafton",
+                               IsSaturday = true
+                           };
+            }
+        }
+
+        private static Day EasterMonday
+        {
+            get
+            {
+                return new Day(HolidayCode.EasterMonday)
+                           {
+                               Name = "Annandag påsk",
+                               IsSunday = true,
+                               WorkTimeReduction = 8
+                           };
+            }
+        }
+
+        private static Day AscensionThursday
+        {
+            get
+            {
+                return new Day(HolidayCode.AscensionThursday)
+                           {
+                               Name = "Kristi himmelsfärdsdag",
+                               IsSunday = true,
+                               WorkTimeReduction = 8
+                           };
+            }
+        }
+
+        private static Day Easter
+        {
+            get
+            {
+                return new Day(HolidayCode.Easter)
+                           {
+                               Name = "Påskdagen",
+                               IsSunday = true
+                           };
+            }
+        }
+
         public IEnumerable<Holiday> Get(int year)
         {
-            var easterDate = new GaussAlgorithmComputus().GetDate(year);
+            var easter = GetEaster(year);
 
-            List<Holiday> days = new List<Holiday>();
+            var pentecost = 7.Th().Sunday().After(easter).Is(Pentecost);
 
-            var easter = new FixedDateHoliday(HolidayCode.Easter, easterDate);
+            easter.AddDependency(pentecost);
 
-            //easter.AddDependency(easter);
+            1.St().Saturday().Before(pentecost).Is(PentecostEve);
+            1.St().Thursday().Before(easter).Is(MaundyThursday);
+            1.St().Friday().Before(easter).Is(GoodFriday);
+            1.St().Saturday().Before(easter).Is(HolySaturday);
+            1.St().Monday().After(easter).Is(EasterMonday);
+            6.Th().Thursday().After(easter).Is(AscensionThursday);
 
-            var pentcost = new DayOfWeekOffsetHoliday(System.DayOfWeek.Sunday, easter.Date, 7, HolidayCode.Pentecost);
+            return easter.AddDates();
+        }
 
-            pentcost.AddDependency(
-                new DayOfWeekOffsetHoliday(System.DayOfWeek.Saturday, pentcost.Date, -1, HolidayCode.PentecostEve));
+        private static FixedDateHoliday GetEaster(int year)
+        {
+            var easterDate =
+                new GaussAlgorithmComputus().GetDate(year);
 
-            easter
-                .AddDependency(new DayOfWeekOffsetHoliday(System.DayOfWeek.Thursday, easter.Date, -1, HolidayCode.MaundyThursday))
-                .AddDependency(new DayOfWeekOffsetHoliday(System.DayOfWeek.Friday, easter.Date, -1, HolidayCode.GoodFriday))
-                .AddDependency(new DayOfWeekOffsetHoliday(System.DayOfWeek.Saturday, easter.Date, -1, HolidayCode.HolySaturday))
-                .AddDependency(new DayOfWeekOffsetHoliday(System.DayOfWeek.Monday, easter.Date, 1, HolidayCode.EasterMonday))
-                .AddDependency(new DayOfWeekOffsetHoliday(System.DayOfWeek.Thursday, easter.Date, 6, HolidayCode.AscensionThursday))
-                .AddDependency(pentcost);
-
-            easter.GetDates2(days);
-
-            return days;
+            return new FixedDateHoliday(Easter, easterDate);
         }
     }
 }

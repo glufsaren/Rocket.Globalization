@@ -1,5 +1,5 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="EasterHolidaysTest.cs" company="Borderline Studios">
+// <copyright file="SwedishHolidaysTest.cs" company="Borderline Studios">
 //   Copyright © Borderline Studios. All rights reserved.
 // </copyright>
 // <summary>
@@ -21,10 +21,10 @@ using Should;
 namespace Rocket.Globalization.Test.Unit
 {
     [TestFixture]
-    public class EasterHolidaysTest
+    public class SwedishHolidaysTest
     {
         [TestFixture]
-        public class When_getting_easter_holidays : BaseUnitTest
+        public class When_getting_swedish_holidays : BaseUnitTest
         {
             private EasterHolidays _easterHolidays;
             private IEnumerable<Holiday> _holidays;
@@ -109,7 +109,7 @@ namespace Rocket.Globalization.Test.Unit
 
             private Holiday GetHoliday(HolidayCode code)
             {
-                return _holidays.Single(holiday => holiday.Code == code);
+                return _holidays.Single(holiday => holiday.Day.Code == code);
             }
         }
     }
