@@ -9,16 +9,18 @@
 
 using System;
 
+using Rocket.Globalization.Sweden;
+
 namespace Rocket.Globalization
 {
     public class HolidayFactory : IHolidayFactory
     {
-        public IHolidayFactory Create(Country country)
+        public IHolidays Create(Country country)
         {
             switch (country)
             {
                 case Country.Sweden:
-                    return null;
+                    return new SwedishHolidays();
 
                 default:
                     throw new ArgumentOutOfRangeException("country");

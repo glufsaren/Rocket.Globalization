@@ -18,11 +18,5 @@ namespace Rocket.Globalization
         public DateTime Start { get; set; }
 
         public DateTime End { get; set; }
-
-        public override short WorkReduction { get; protected set; }
-
-        public override DateTime? Introduced { get; protected set; }
-
-        public override DateTime? Depricated { get; protected set; }
     }
 }

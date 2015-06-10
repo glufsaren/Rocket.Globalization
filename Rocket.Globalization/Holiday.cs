@@ -21,22 +21,6 @@ namespace Rocket.Globalization
 
         public DateTime Date { get; set; }
 
-        public string LocalName { get; set; }
-
-        public abstract short WorkReduction { get; protected set; }
-
-        public abstract DateTime? Introduced { get; protected set; }
-
-        public abstract DateTime? Depricated { get; protected set; }
-
-        public IEnumerable<Country> Countries
-        {
-            get
-            {
-                yield return Country.Sweden;
-            }
-        }
-
         public Holiday AddDependency(Holiday holiday)
         {
             if (!_holidays.Contains(holiday))

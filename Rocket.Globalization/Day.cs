@@ -7,8 +7,6 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using Rocket.Globalization.Sweden;
 
 namespace Rocket.Globalization

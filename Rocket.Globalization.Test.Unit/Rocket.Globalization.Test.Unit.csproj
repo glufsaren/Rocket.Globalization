@@ -43,7 +43,7 @@
   <ItemGroup>
     <Compile Include="GaussAlgorithmComputusTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SwedishHolidaysTest.cs" />
+    <Compile Include="HolidayFactoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

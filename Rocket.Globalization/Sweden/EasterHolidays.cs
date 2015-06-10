@@ -40,6 +40,19 @@ namespace Rocket.Globalization.Sweden
             }
         }
 
+        private static Day PentecostMonday
+        {
+            get
+            {
+                return new Day(HolidayCode.PentecostMonday)
+                {
+                    Name = "Annandag pingst",
+                    IsSunday = true
+                };
+
+            }
+        }
+
         private static Day MaundyThursday
         {
             get
@@ -120,6 +133,11 @@ namespace Rocket.Globalization.Sweden
             var easter = GetEaster(year);
 
             var pentecost = 7.Th().Sunday().After(easter).Is(Pentecost);
+
+            if (year <= 2004)
+            {
+                1.Th().Monday().After(pentecost).Is(PentecostMonday);
+            }
 
             easter.AddDependency(pentecost);
 
