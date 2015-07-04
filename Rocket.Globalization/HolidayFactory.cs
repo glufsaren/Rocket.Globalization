@@ -15,7 +15,7 @@ namespace Rocket.Globalization
 {
     public class HolidayFactory : IHolidayFactory
     {
-        public IHolidays Create(Country country)
+        public Holidays Create(Country country)
         {
             switch (country)
             {

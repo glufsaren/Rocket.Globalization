@@ -45,9 +45,29 @@ namespace Rocket.Globalization
                        };
         }
 
+        public static Parameters Days(this int days)
+        {
+            return new Parameters
+            {
+                Days = days
+            };
+        }
+
         public static Parameters Monday(this Parameters param)
         {
             param.DayOfWeek = DayOfWeek.Monday;
+            return param;
+        }
+
+        public static Parameters Tuesday(this Parameters param)
+        {
+            param.DayOfWeek = DayOfWeek.Tuesday;
+            return param;
+        }
+
+        public static Parameters Wednesday(this Parameters param)
+        {
+            param.DayOfWeek = DayOfWeek.Wednesday;
             return param;
         }
 
@@ -87,6 +107,7 @@ namespace Rocket.Globalization
         public static Parameters Before(this Parameters param, Holiday holiday)
         {
             param.Number = param.Number * -1;
+            param.Days = param.Days * -1;
             param.Date = holiday.Date;
             param.Parent = holiday;
 
@@ -97,11 +118,29 @@ namespace Rocket.Globalization
         {
             parameters.Day = day;
 
-            var x = new DayOfWeekOffsetHoliday(parameters);
+            var holiday = new DayOfWeekOffsetHoliday(parameters);
 
-            parameters.Parent.AddDependency(x);
+            parameters.Parent.AddDependency(holiday);
 
-            return x;
+            return holiday;
+        }
+
+        public static NumberOfDaysOffsetHoliday IsX(this Parameters parameters, Day day)
+        {
+            parameters.Day = day;
+
+            var holiday = new NumberOfDaysOffsetHoliday(parameters.Date, parameters.Days, day);
+
+            parameters.Parent.AddDependency(holiday);
+
+            return holiday;
+        }
+
+        public static Holiday Modify(this Holiday holiday, Action<Holiday> func)
+        {
+            func(holiday);
+
+            return holiday;
         }
     }
 }

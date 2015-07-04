@@ -42,6 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GaussAlgorithmComputusTest.cs" />
+    <Compile Include="CandlemassTest.cs" />
+    <Compile Include="EasterHolidayFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HolidayFactoryTest.cs" />
   </ItemGroup>

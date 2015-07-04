@@ -22,5 +22,7 @@ namespace Rocket.Globalization
         public DateTime Date { get; set; }
 
         public Holiday Parent { get; set; }
+
+        public int Days { get; set; }
     }
 }

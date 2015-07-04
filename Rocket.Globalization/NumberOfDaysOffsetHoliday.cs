@@ -1,18 +1,22 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="IHolidays.cs" company="Borderline Studios">
+// <copyright file="NumberOfDaysOffsetHoliday.cs" company="Borderline Studios">
 //   Copyright © Borderline Studios. All rights reserved.
 // </copyright>
 // <summary>
-//   Defines the IHolidays type.
+//   Defines the NumberOfDaysOffsetHoliday type.
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System.Collections.Generic;
+using System;
 
 namespace Rocket.Globalization
 {
-    public interface IHolidays
+    public class NumberOfDaysOffsetHoliday : Holiday
     {
-        IEnumerable<Holiday> Get(int year);
+        public NumberOfDaysOffsetHoliday(DateTime dateTime, int days, Day day)
+            : base(day)
+        {
+            Date = dateTime.AddDays(days);
+        }
     }
 }

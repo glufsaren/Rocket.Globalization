@@ -7,6 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System;
+
 using Rocket.Globalization.Sweden;
 
 namespace Rocket.Globalization
@@ -27,5 +29,9 @@ namespace Rocket.Globalization
         public bool IsSunday { get; set; }
 
         public bool IsSaturday { get; set; }
+
+        public DateTime? Introduced { get; set; }
+
+        public DateTime? Deprecated { get; set; }
     }
 }

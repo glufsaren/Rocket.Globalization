@@ -11,6 +11,6 @@ namespace Rocket.Globalization
 {
     public interface IHolidayFactory
     {
-        IHolidays Create(Country country);
+        Holidays Create(Country country);
     }
 }

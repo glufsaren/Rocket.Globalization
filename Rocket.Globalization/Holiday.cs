@@ -11,15 +11,66 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using Rocket.Globalization.Sweden;
+
 namespace Rocket.Globalization
 {
-    public abstract class Holiday : IHoliday
+    public abstract class Holiday
     {
+        private readonly Day _day;
+
+        public Day Day
+        {
+            get
+            {
+                return _day;
+            }
+        }
+
+        private static readonly IEqualityComparer<Holiday> CodeComparerInstance = new CodeEqualityComparer();
+
         private readonly IList<Holiday> _holidays = new List<Holiday>();
 
-        public Day Day { get; internal set; }
+        protected Holiday(Day day)
+        {
+            _day = day;
+            AddDayInformation();
+        }
+
+        public static IEqualityComparer<Holiday> CodeComparer
+        {
+            get
+            {
+                return CodeComparerInstance;
+            }
+        }
 
         public DateTime Date { get; set; }
+
+        public int WorkTimeReduction { get; set; }
+
+        public HolidayCode Code { get; set; }
+
+        public string Name { get; set; }
+
+        public bool IsSunday { get; set; }
+
+        public bool IsSaturday { get; set; }
+
+        public DateTime? Introduced { get; set; }
+
+        public DateTime? Deprecated { get; set; }
+
+        public bool IsActive
+        {
+            get
+            {
+                var depricated = Deprecated != null && Date >= Deprecated;
+                var introduced = Introduced == null || Date >= Introduced;
+
+                return !depricated && introduced;
+            }
+        }
 
         public Holiday AddDependency(Holiday holiday)
         {
@@ -37,8 +88,32 @@ namespace Rocket.Globalization
 
             AddDates(dates);
 
-            return dates
-                .OrderBy(holiday => holiday.Date);
+            return dates;
+        }
+
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj))
+            {
+                return false;
+            }
+
+            if (ReferenceEquals(this, obj))
+            {
+                return true;
+            }
+
+            if (obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+
+            return Equals((Holiday)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return (int)Code;
         }
 
         private static void AddDates(List<Holiday> holidays, Holiday holiday)
@@ -52,6 +127,11 @@ namespace Rocket.Globalization
             _holidays
                 .ToList()
                 .ForEach(holiday => AddDates(holidays, holiday));
+        }
+
+        private bool Equals(Holiday other)
+        {
+            return Code == other.Code;
         }
 
         private sealed class CodeEqualityComparer : IEqualityComparer<Holiday>
@@ -78,50 +158,24 @@ namespace Rocket.Globalization
                     return false;
                 }
 
-                return x.Day.Code == y.Day.Code;
+                return x.Code == y.Code;
             }
 
             public int GetHashCode(Holiday obj)
             {
-                return (int)obj.Day.Code;
+                return (int)obj.Code;
             }
         }
 
-        private static readonly IEqualityComparer<Holiday> CodeComparerInstance = new CodeEqualityComparer();
-
-        public static IEqualityComparer<Holiday> CodeComparer
+        private void AddDayInformation()
         {
-            get
-            {
-                return CodeComparerInstance;
-            }
-        }
-
-        private bool Equals(Holiday other)
-        {
-            return Day.Code == other.Day.Code;
-        }
-
-        public override bool Equals(object obj)
-        {
-            if (ReferenceEquals(null, obj))
-            {
-                return false;
-            }
-            if (ReferenceEquals(this, obj))
-            {
-                return true;
-            }
-            if (obj.GetType() != this.GetType())
-            {
-                return false;
-            }
-            return Equals((Holiday)obj);
-        }
-
-        public override int GetHashCode()
-        {
-            return (int)Day.Code;
+            WorkTimeReduction = _day.WorkTimeReduction;
+            Code = _day.Code;
+            Name = _day.Name;
+            IsSunday = _day.IsSunday;
+            IsSaturday = _day.IsSaturday;
+            Introduced = _day.Introduced;
+            Deprecated = _day.Deprecated;
         }
     }
 }

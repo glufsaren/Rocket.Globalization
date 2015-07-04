@@ -11,11 +11,12 @@ using System;
 
 namespace Rocket.Globalization
 {
+    // TODO: Denna måste dokumenteras bättre!
     public class DayOfWeekOffsetHoliday : Holiday
     {
         public DayOfWeekOffsetHoliday(DayOfWeek dayOfWeek, DateTime dateTime, int number, Day day)
+            : base(day)
         {
-            Day = day;
             DayOfWeek = dayOfWeek;
             DateTime = dateTime;
             Number = number;
@@ -33,9 +34,12 @@ namespace Rocket.Globalization
                 delta = dayOfWeek - offset.DayOfWeek;
             }
 
-            if (delta == 0) delta = 7;
+            if (delta == 0)
+            {
+                delta = 7;
+            }
 
-            DateTime monday = offset.AddDays(delta);
+            var monday = offset.AddDays(delta);
 
             Date = monday;
         }

@@ -14,8 +14,8 @@ namespace Rocket.Globalization
     public class FixedDateHoliday : Holiday
     {
         public FixedDateHoliday(Day day, DateTime date)
+            : base(day)
         {
-            Day = day;
             Date = date;
         }
     }

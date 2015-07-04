@@ -32,24 +32,54 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(1889);
 
             var workersDay = holidays.SingleOrDefault(holiday =>
-                    holiday.Day.Code == HolidayCode.WorkersDay);
+                    holiday.Code == HolidayCode.WorkersDay);
 
             workersDay.ShouldBeNull();
         }
 
-        [TestCase(2003, "2003-06-09")]
-        [TestCase(2004, "2004-05-31")]
-        public void When_getting_pentecost_monday_2004_or_earlier_expect_holiday_returned(int year, string date)
+        [TestCase(1570, "1570-05-18")]
+        [TestCase(1571, "1571-05-18")]
+        public void When_getting_eriks_day_before_1571_expect_holiday(int year, string date)
         {
             var holidayFactory = new HolidayFactory();
             var swedishHolidays = holidayFactory.Create(Country.Sweden);
 
             var holidays = swedishHolidays.Get(year);
 
-            var pentecostMonday = holidays.Single(holiday =>
-                   holiday.Day.Code == HolidayCode.PentecostMonday);
+            var eriksDay = holidays.Single(holiday =>
+                    holiday.Code == HolidayCode.EriksDay);
 
-            pentecostMonday.Date.ShouldEqual(DateTime.Parse(date));
+            eriksDay.Date.ShouldEqual(DateTime.Parse(date));
+        }
+
+        [TestCase(1570, "1570-12-27")]
+        [TestCase(1571, "1571-12-27")]
+        public void When_getting_third_christmas_day_before_1571_expect_holiday(int year, string date)
+        {
+            var holidayFactory = new HolidayFactory();
+            var swedishHolidays = holidayFactory.Create(Country.Sweden);
+
+            var holidays = swedishHolidays.Get(year);
+
+            var thirdDayOfChristmas = holidays.Single(holiday =>
+                    holiday.Code == HolidayCode.ThirdDayOfChristmas);
+
+            thirdDayOfChristmas.Date.ShouldEqual(DateTime.Parse(date));
+        }
+
+        [TestCase(1570, "1570-12-28")]
+        [TestCase(1571, "1571-12-28")]
+        public void When_getting_fourth_christmas_day_before_1571_expect_holiday(int year, string date)
+        {
+            var holidayFactory = new HolidayFactory();
+            var swedishHolidays = holidayFactory.Create(Country.Sweden);
+
+            var holidays = swedishHolidays.Get(year);
+
+            var fourthDayOfChristmas = holidays.Single(holiday =>
+                    holiday.Code == HolidayCode.FourthDayOfChristmas);
+
+            fourthDayOfChristmas.Date.ShouldEqual(DateTime.Parse(date));
         }
 
         [Test]
@@ -61,7 +91,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(2004);
 
             var workersDay = holidays.SingleOrDefault(holiday =>
-                    holiday.Day.Code == HolidayCode.NationalDay);
+                    holiday.Code == HolidayCode.NationalDay);
 
             workersDay.ShouldBeNull();
         }
@@ -70,23 +100,24 @@ namespace Rocket.Globalization.Test.Unit
         public class When_getting_swedish_holidays : BaseUnitTest
         {
             private HolidayFactory _holidayFactory;
-            private IHolidays _swedishHolidays;
+            private Holidays _swedishHolidays;
             private IEnumerable<Holiday> _holidays;
-            private Holiday _maundyThursday;
-            private Holiday _goodFriday;
-            private Holiday _holySaturday;
-            private Holiday _easter;
-            private Holiday _easterMonday;
-            private Holiday _ascensionThursday;
-            private Holiday _pentecostEve;
-            private Holiday _pentecost;
             private Holiday _newYearsDay;
             private Holiday _twelfthNight;
-            private Holiday _epiphany;
             private Holiday _walpurgisNight;
             private Holiday _workersDay;
-            private Holiday _pentecostMonday;
             private Holiday _nationalDay;
+            private Holiday _midsummerEve;
+            private Holiday _midsummer;
+            private Holiday _halloween;
+            private Holiday _allSaintsDay;
+            private Holiday _allSaintsDay2;
+            private Holiday _christmasEve;
+            private Holiday _christmas;
+            private Holiday _boxingDay;
+            private Holiday _newYears;
+            private Holiday _thirdDayOfChristmas;
+            private Holiday _fourthDayOfChristmas;
 
             protected override void Arrange()
             {
@@ -101,23 +132,26 @@ namespace Rocket.Globalization.Test.Unit
 
             protected override void Assemble()
             {
-                _maundyThursday = GetHoliday(HolidayCode.MaundyThursday);
-                _goodFriday = GetHoliday(HolidayCode.GoodFriday);
-                _holySaturday = GetHoliday(HolidayCode.HolySaturday);
-                _easter = GetHoliday(HolidayCode.Easter);
-                _easterMonday = GetHoliday(HolidayCode.EasterMonday);
-                _ascensionThursday = GetHoliday(HolidayCode.AscensionThursday);
-                _pentecostEve = GetHoliday(HolidayCode.PentecostEve);
-                _pentecost = GetHoliday(HolidayCode.Pentecost);
                 _newYearsDay = GetHoliday(HolidayCode.NewYearsDay);
                 _twelfthNight = GetHoliday(HolidayCode.TwelfthNight);
-                _epiphany = GetHoliday(HolidayCode.Epiphany);
                 _walpurgisNight = GetHoliday(HolidayCode.WalpurgisNight);
                 _workersDay = GetHoliday(HolidayCode.WorkersDay);
                 _nationalDay = GetHoliday(HolidayCode.NationalDay);
+                _midsummerEve = GetHoliday(HolidayCode.MidsummerEve);
+                _midsummer = GetHoliday(HolidayCode.Midsummer);
+                _halloween = GetHoliday(HolidayCode.Halloween);
+                _allSaintsDay = GetHoliday(HolidayCode.AllSaintsDay);
+                _allSaintsDay2 = GetHoliday(HolidayCode.AllSaintsDay2);
+                _christmasEve = GetHoliday(HolidayCode.ChristmasEve);
+                _christmas = GetHoliday(HolidayCode.Christmas);
+                _boxingDay = GetHoliday(HolidayCode.BoxingDay);
+                _newYears = GetHoliday(HolidayCode.NewYear);
 
-                _pentecostMonday = _holidays.SingleOrDefault(
-                    holiday => holiday.Day.Code == HolidayCode.PentecostMonday);
+                _thirdDayOfChristmas = _holidays.SingleOrDefault(
+                    holiday => holiday.Code == HolidayCode.ThirdDayOfChristmas);
+
+                _fourthDayOfChristmas = _holidays.SingleOrDefault(
+                    holiday => holiday.Code == HolidayCode.FourthDayOfChristmas);
             }
 
             [Test]
@@ -133,42 +167,6 @@ namespace Rocket.Globalization.Test.Unit
             }
 
             [Test]
-            public void It_gets_epiphany()
-            {
-                _epiphany.Date.ShouldEqual(new DateTime(2015, 01, 06));
-            }
-
-            [Test]
-            public void It_gets_maundry_thursday()
-            {
-                _maundyThursday.Date.ShouldEqual(new DateTime(2015, 04, 02));
-            }
-
-            [Test]
-            public void It_gets_good_friday()
-            {
-                _goodFriday.Date.ShouldEqual(new DateTime(2015, 04, 03));
-            }
-
-            [Test]
-            public void It_gets_holy_saturday()
-            {
-                _holySaturday.Date.ShouldEqual(new DateTime(2015, 04, 04));
-            }
-
-            [Test]
-            public void It_gets_easter()
-            {
-                _easter.Date.ShouldEqual(new DateTime(2015, 04, 05));
-            }
-
-            [Test]
-            public void It_gets_easter_monday()
-            {
-                _easterMonday.Date.ShouldEqual(new DateTime(2015, 04, 06));
-            }
-
-            [Test]
             public void It_gets_walpurgis_night()
             {
                 _walpurgisNight.Date.ShouldEqual(new DateTime(2015, 04, 30));
@@ -181,38 +179,80 @@ namespace Rocket.Globalization.Test.Unit
             }
 
             [Test]
-            public void It_gets_ascension_thursday()
-            {
-                _ascensionThursday.Date.ShouldEqual(new DateTime(2015, 05, 14));
-            }
-
-            [Test]
-            public void It_gets_pentecost_eve()
-            {
-                _pentecostEve.Date.ShouldEqual(new DateTime(2015, 05, 23));
-            }
-
-            [Test]
-            public void It_gets_pentecost()
-            {
-                _pentecost.Date.ShouldEqual(new DateTime(2015, 05, 24));
-            }
-
-            [Test]
-            public void It_does_not_get_pentecost_monday()
-            {
-                _pentecostMonday.ShouldBeNull();
-            }
-
-            [Test]
             public void It_gets_national_day()
             {
                 _nationalDay.Date.ShouldEqual(new DateTime(2015, 06, 06));
             }
 
+            [Test]
+            public void It_gets_midsummer_eve()
+            {
+                _midsummerEve.Date.ShouldEqual(new DateTime(2015, 06, 19));
+            }
+
+            [Test]
+            public void It_gets_midsummer()
+            {
+                _midsummer.Date.ShouldEqual(new DateTime(2015, 06, 20));
+            }
+
+            [Test]
+            public void It_gets_halloween()
+            {
+                _halloween.Date.ShouldEqual(new DateTime(2015, 10, 30));
+            }
+
+            [Test]
+            public void It_gets_all_saints_day()
+            {
+                _allSaintsDay.Date.ShouldEqual(new DateTime(2015, 10, 31));
+            }
+
+            [Test]
+            public void It_gets_all_saints_day2()
+            {
+                _allSaintsDay2.Date.ShouldEqual(new DateTime(2015, 11, 01));
+            }
+
+            [Test]
+            public void It_gets_christmas_eve()
+            {
+                _christmasEve.Date.ShouldEqual(new DateTime(2015, 12, 24));
+            }
+
+            [Test]
+            public void It_gets_christmas()
+            {
+                _christmas.Date.ShouldEqual(new DateTime(2015, 12, 25));
+            }
+
+            [Test]
+            public void It_gets_boxing_day()
+            {
+                _boxingDay.Date.ShouldEqual(new DateTime(2015, 12, 26));
+            }
+
+            [Test]
+            public void It_gets_new_years()
+            {
+                _newYears.Date.ShouldEqual(new DateTime(2015, 12, 31));
+            }
+
+            [Test]
+            public void It_gets_third_day_of_christmas()
+            {
+                _thirdDayOfChristmas.ShouldBeNull();
+            }
+
+            [Test]
+            public void It_gets_fourth_day_of_christmas()
+            {
+                _fourthDayOfChristmas.ShouldBeNull();
+            }
+
             private Holiday GetHoliday(HolidayCode code)
             {
-                return _holidays.Single(holiday => holiday.Day.Code == code);
+                return _holidays.Single(holiday => holiday.Code == code);
             }
         }
     }

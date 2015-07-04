@@ -66,6 +66,16 @@ namespace Rocket.Globalization.Sweden
         EasterMonday,
 
         /// <summary>
+        /// <code>Tredjedag påsk - Rörligt datum, (till och med 1771)</code>.
+        /// </summary>
+        EasterTuesday,
+
+        /// <summary>
+        /// <code>Fjärdedag påsk - Rörligt datum, (till och med 1771)</code>.
+        /// </summary>
+        EasterWednesday,
+
+        /// <summary>
         /// <code>Valborgsmässoafton - Fast datum, 30 april</code>.
         /// </summary>
         WalpurgisNight,
@@ -94,6 +104,16 @@ namespace Rocket.Globalization.Sweden
         /// <code>Annandag pingst - till och med 2004.</code>.
         /// </summary>
         PentecostMonday,
+
+        /// <summary>
+        /// <code>Tredjedag pingst - till och med 1771.</code>.
+        /// </summary>
+        PentecostTuesday,
+
+        /// <summary>
+        /// <code>Fjärdedag pingst - till och med 1771.</code>.
+        /// </summary>
+        PentecostWednesday,
 
         /// <summary>
         /// <code>Eriksmässa – 18 maj (till och med 1571)</code>.
@@ -126,6 +146,11 @@ namespace Rocket.Globalization.Sweden
         AllSaintsDay,
 
         /// <summary>
+        /// <code>Allhelgonadagen - Fast datum, 1 november (till och med 1953)</code>.
+        /// </summary>
+        AllSaintsDay2,
+
+        /// <summary>
         /// <code>Julafton - Fast datum, 24 december</code>.
         /// </summary>
         ChristmasEve,
@@ -139,6 +164,16 @@ namespace Rocket.Globalization.Sweden
         /// <code>Annandag jul - Fast datum, 26 december</code>.
         /// </summary>
         BoxingDay,
+
+        /// <summary>
+        /// <code>Tredjedag jul - Fast datum, 27 december (till och med 1771)</code>.
+        /// </summary>
+        ThirdDayOfChristmas,
+
+        /// <summary>
+        /// <code>Fjärdedag jul - Fast datum, 28 december (till och med 1771)</code>.
+        /// </summary>
+        FourthDayOfChristmas,
 
         /// <summary>
         /// <code>Nyårsafton - Fast datum, 31 december</code>.
