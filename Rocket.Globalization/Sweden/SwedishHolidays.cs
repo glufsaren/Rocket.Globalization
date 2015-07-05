@@ -8,6 +8,7 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 
 namespace Rocket.Globalization.Sweden
@@ -50,7 +51,7 @@ namespace Rocket.Globalization.Sweden
             swedishHolidays.AddRange(
                 new EasterHolidays().Get(year));
 
-            Holidays1.AddRange(swedishHolidays);
+            _holidays.AddRange(swedishHolidays);
         }
 
         private static FixedDateHoliday NewYearsDay(int year)

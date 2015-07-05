@@ -7,6 +7,7 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,23 +15,25 @@ namespace Rocket.Globalization
 {
     public abstract class Holidays
     {
-        private readonly List<Holiday> _holidays = new List<Holiday>();
+        private readonly ConcurrentDictionary<int, List<Holiday>> _years =
+            new ConcurrentDictionary<int, List<Holiday>>();
 
-        protected List<Holiday> Holidays1
-        {
-            get
-            {
-                return _holidays;
-            }
-        }
+        protected readonly List<Holiday> _holidays = new List<Holiday>();
 
         public IEnumerable<Holiday> Get(int year)
         {
-            AddHolidays(year);
+            //List<Holiday> holidays;
 
-            return Holidays1
-                .Where(holiday => holiday.IsActive)
-                .OrderBy(holiday => holiday.Date);
+            //if (!_years.TryGetValue(year, out holidays))
+            //{
+                AddHolidays(year);
+
+                //_years.TryAdd(year, _holidays.Where(holiday => holiday.IsActive).OrderBy(holiday => holiday.Date).ToList());
+            //}
+
+            //return holidays;
+
+            return _holidays.Where(holiday => holiday.IsActive).OrderBy(holiday => holiday.Date);
         }
 
         protected abstract void AddHolidays(int year);

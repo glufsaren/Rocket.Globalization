@@ -51,6 +51,9 @@
     <Compile Include="Parameters.cs" />
     <Compile Include="Sweden\EasterHolidays.cs" />
     <Compile Include="Sweden\HolidayCode.cs" />
+    <Compile Include="Sweden\Holidays\Christmas\Days.cs" />
+    <Compile Include="Sweden\Holidays\Days.cs" />
+    <Compile Include="Sweden\Holidays\Easter\Days.cs" />
     <Compile Include="Sweden\SwedishHolidays.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
