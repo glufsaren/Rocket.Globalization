@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Rocket.Globalization</RootNamespace>
     <AssemblyName>Rocket.Globalization</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -37,12 +38,24 @@
     <Compile Include="Computus\Computus.cs" />
     <Compile Include="Computus\GaussAlgorithmComputus.cs" />
     <Compile Include="Country.cs" />
+    <Compile Include="DayOfWeekNegative.cs" />
+    <Compile Include="DayOfWeekIntervalHoliday.cs" />
+    <Compile Include="NumberOfDaysOffsetHoliday.cs" />
+    <Compile Include="DayOfWeekOffsetHoliday.cs" />
+    <Compile Include="ParametersExtensions.cs" />
+    <Compile Include="FixedDateHoliday.cs" />
     <Compile Include="Holiday.cs" />
-    <Compile Include="SwedishHolidayFactory.cs" />
+    <Compile Include="HolidayFactory.cs" />
+    <Compile Include="IHolidayFactory.cs" />
+    <Compile Include="Holidays.cs" />
+    <Compile Include="Parameters.cs" />
+    <Compile Include="Sweden\EasterHolidays.cs" />
+    <Compile Include="Sweden\HolidayCode.cs" />
+    <Compile Include="Sweden\SwedishHolidays.cs" />
     <Compile Include="Day.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SwedishHolidayCode.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

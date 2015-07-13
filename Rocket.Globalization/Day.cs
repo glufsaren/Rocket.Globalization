@@ -9,31 +9,29 @@
 
 using System;
 
+using Rocket.Globalization.Sweden;
+
 namespace Rocket.Globalization
 {
     public class Day
     {
-        public Day(DateTime date)
+        public Day(HolidayCode code)
         {
-            Date = date;
+            Code = code;
         }
-
-        public DayOfWeek Weekday
-        {
-            get
-            {
-                return Date.DayOfWeek;
-            }
-        }
-
-        public DateTime Date { get; private set; }
 
         public int WorkTimeReduction { get; set; }
 
-        public SwedishHolidayCode Code { get; set; }
+        public HolidayCode Code { get; set; }
 
         public string Name { get; set; }
 
-        public bool IsHoliday { get; set; }
+        public bool IsSunday { get; set; }
+
+        public bool IsSaturday { get; set; }
+
+        public DateTime? Introduced { get; set; }
+
+        public DateTime? Deprecated { get; set; }
     }
 }
