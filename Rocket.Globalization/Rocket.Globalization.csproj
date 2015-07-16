@@ -38,24 +38,25 @@
     <Compile Include="Computus\Computus.cs" />
     <Compile Include="Computus\GaussAlgorithmComputus.cs" />
     <Compile Include="Country.cs" />
-    <Compile Include="DayOfWeekNegative.cs" />
-    <Compile Include="DayOfWeekIntervalHoliday.cs" />
-    <Compile Include="NumberOfDaysOffsetHoliday.cs" />
-    <Compile Include="DayOfWeekOffsetHoliday.cs" />
-    <Compile Include="ParametersExtensions.cs" />
-    <Compile Include="FixedDateHoliday.cs" />
+    <Compile Include="DateCalculations\DayOfWeekNegative.cs" />
+    <Compile Include="DateCalculations\DayOfWeekIntervalHoliday.cs" />
+    <Compile Include="DateCalculations\DayOfWeekExtensions.cs" />
+    <Compile Include="DateCalculations\NumberOfDaysOffsetHoliday.cs" />
+    <Compile Include="DateCalculations\DayOfWeekOffsetHoliday.cs" />
+    <Compile Include="DateCalculations\Parameters.cs" />
+    <Compile Include="DateCalculations\ParametersExtensions.cs" />
+    <Compile Include="DateCalculations\FixedDateHoliday.cs" />
     <Compile Include="Holiday.cs" />
     <Compile Include="HolidayFactory.cs" />
     <Compile Include="IHolidayFactory.cs" />
     <Compile Include="Holidays.cs" />
-    <Compile Include="Parameters.cs" />
     <Compile Include="Sweden\EasterHolidays.cs" />
     <Compile Include="Sweden\HolidayCode.cs" />
-    <Compile Include="Sweden\Holidays\Christmas\Days.cs" />
-    <Compile Include="Sweden\Holidays\Days.cs" />
-    <Compile Include="Sweden\Holidays\Easter\Days.cs" />
+    <Compile Include="Sweden\ChristmasDays.cs" />
+    <Compile Include="Sweden\Days.cs" />
+    <Compile Include="Sweden\EasterDays.cs" />
     <Compile Include="Sweden\SwedishHolidays.cs" />
-    <Compile Include="Day.cs" />
+    <Compile Include="HolidayMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

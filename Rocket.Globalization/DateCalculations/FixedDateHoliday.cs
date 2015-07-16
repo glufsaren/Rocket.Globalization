@@ -9,12 +9,12 @@
 
 using System;
 
-namespace Rocket.Globalization
+namespace Rocket.Globalization.DateCalculations
 {
     public class FixedDateHoliday : Holiday
     {
-        public FixedDateHoliday(Day day, DateTime date)
-            : base(day)
+        public FixedDateHoliday(HolidayMetadata metadata, DateTime date)
+            : base(metadata)
         {
             Date = date;
         }

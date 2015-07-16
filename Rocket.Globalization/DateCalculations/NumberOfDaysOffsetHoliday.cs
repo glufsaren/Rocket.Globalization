@@ -9,12 +9,12 @@
 
 using System;
 
-namespace Rocket.Globalization
+namespace Rocket.Globalization.DateCalculations
 {
     public class NumberOfDaysOffsetHoliday : Holiday
     {
-        public NumberOfDaysOffsetHoliday(DateTime dateTime, int days, Day day)
-            : base(day)
+        public NumberOfDaysOffsetHoliday(DateTime dateTime, int days, HolidayMetadata metadata)
+            : base(metadata)
         {
             Date = dateTime.AddDays(days);
         }

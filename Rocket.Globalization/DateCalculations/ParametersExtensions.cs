@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Rocket.Globalization
+namespace Rocket.Globalization.DateCalculations
 {
     internal static class ParametersExtensions
     {
@@ -114,7 +114,7 @@ namespace Rocket.Globalization
             return param;
         }
 
-        public static DayOfWeekOffsetHoliday Is(this Parameters parameters, Day day)
+        public static DayOfWeekOffsetHoliday Is(this Parameters parameters, HolidayMetadata day)
         {
             parameters.Day = day;
 
@@ -125,7 +125,7 @@ namespace Rocket.Globalization
             return holiday;
         }
 
-        public static NumberOfDaysOffsetHoliday IsX(this Parameters parameters, Day day)
+        public static NumberOfDaysOffsetHoliday IsX(this Parameters parameters, HolidayMetadata day)
         {
             parameters.Day = day;
 

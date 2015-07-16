@@ -9,7 +9,7 @@
 
 using System;
 
-namespace Rocket.Globalization
+namespace Rocket.Globalization.DateCalculations
 {
     internal class Parameters
     {
@@ -17,7 +17,7 @@ namespace Rocket.Globalization
 
         public int Number { get; set; }
 
-        public Day Day { get; set; }
+        public HolidayMetadata Day { get; set; }
 
         public DateTime Date { get; set; }
 

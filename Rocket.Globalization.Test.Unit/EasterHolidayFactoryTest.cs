@@ -33,7 +33,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var pentecostMonday = holidays.Single(holiday =>
-                   holiday.Code == HolidayCode.PentecostMonday);
+                   holiday.Metadata.Code == HolidayCode.PentecostMonday);
 
             pentecostMonday.Date.ShouldEqual(DateTime.Parse(date));
         }
@@ -48,7 +48,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var feastOfTheAnnunciation = holidays.Single(holiday =>
-                    holiday.Code == HolidayCode.FeastOfTheAnnunciation);
+                    holiday.Metadata.Code == HolidayCode.FeastOfTheAnnunciation);
 
             feastOfTheAnnunciation.Date.ShouldEqual(DateTime.Parse(date));
         }
@@ -63,9 +63,9 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var maundyThursday = holidays.Single(holiday =>
-                    holiday.Code == HolidayCode.MaundyThursday);
+                    holiday.Metadata.Code == HolidayCode.MaundyThursday);
 
-            maundyThursday.IsSunday.ShouldBeTrue();
+            maundyThursday.Metadata.IsSunday.ShouldBeTrue();
         }
 
         [TestCase(1770, "1770-04-17")]
@@ -78,7 +78,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var easterTuesday = holidays.Single(holiday =>
-                    holiday.Code == HolidayCode.EasterTuesday);
+                    holiday.Metadata.Code == HolidayCode.EasterTuesday);
 
             easterTuesday.Date.ShouldEqual(DateTime.Parse(date));
         }
@@ -93,7 +93,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var easterWednesday = holidays.Single(holiday =>
-                    holiday.Code == HolidayCode.EasterWednesday);
+                    holiday.Metadata.Code == HolidayCode.EasterWednesday);
 
             easterWednesday.Date.ShouldEqual(DateTime.Parse(date));
         }
@@ -108,7 +108,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var easterTuesday = holidays.Single(holiday =>
-                    holiday.Code == HolidayCode.PentecostTuesday);
+                    holiday.Metadata.Code == HolidayCode.PentecostTuesday);
 
             easterTuesday.Date.ShouldEqual(DateTime.Parse(date));
         }
@@ -123,7 +123,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var easterWednesday = holidays.Single(holiday =>
-                    holiday.Code == HolidayCode.PentecostWednesday);
+                    holiday.Metadata.Code == HolidayCode.PentecostWednesday);
 
             easterWednesday.Date.ShouldEqual(DateTime.Parse(date));
         }
@@ -176,22 +176,22 @@ namespace Rocket.Globalization.Test.Unit
                 _quinquagesima = GetHoliday(HolidayCode.Quinquagesima);
 
                 _pentecostMonday = _holidays.SingleOrDefault(
-                    holiday => holiday.Code == HolidayCode.PentecostMonday);
+                    holiday => holiday.Metadata.Code == HolidayCode.PentecostMonday);
 
                 _pentecostTuesday = _holidays.SingleOrDefault(
-                    holiday => holiday.Code == HolidayCode.PentecostTuesday);
+                    holiday => holiday.Metadata.Code == HolidayCode.PentecostTuesday);
 
                 _pentecostWednesday = _holidays.SingleOrDefault(
-                    holiday => holiday.Code == HolidayCode.PentecostWednesday);
+                    holiday => holiday.Metadata.Code == HolidayCode.PentecostWednesday);
 
                 _candlemass = _holidays.SingleOrDefault(
-                    holiday => holiday.Code == HolidayCode.Candlemas);
+                    holiday => holiday.Metadata.Code == HolidayCode.Candlemas);
 
                 _easterTuesday = _holidays.SingleOrDefault(
-                    holiday => holiday.Code == HolidayCode.EasterTuesday);
+                    holiday => holiday.Metadata.Code == HolidayCode.EasterTuesday);
 
                 _easterWednesday = _holidays.SingleOrDefault(
-                    holiday => holiday.Code == HolidayCode.EasterWednesday);
+                    holiday => holiday.Metadata.Code == HolidayCode.EasterWednesday);
             }
 
             [Test]
@@ -215,7 +215,7 @@ namespace Rocket.Globalization.Test.Unit
             [Test]
             public void It_maundry_thursday_should_not_be_a_sunday()
             {
-                _maundyThursday.IsSunday.ShouldBeFalse();
+                _maundyThursday.Metadata.IsSunday.ShouldBeFalse();
             }
 
             [Test]
@@ -298,7 +298,7 @@ namespace Rocket.Globalization.Test.Unit
 
             private Holiday GetHoliday(HolidayCode code)
             {
-                return _holidays.Single(holiday => holiday.Code == code);
+                return _holidays.Single(holiday => holiday.Metadata.Code == code);
             }
         }
     }

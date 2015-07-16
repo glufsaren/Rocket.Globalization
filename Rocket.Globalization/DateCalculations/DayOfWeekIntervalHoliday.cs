@@ -9,12 +9,12 @@
 
 using System;
 
-namespace Rocket.Globalization
+namespace Rocket.Globalization.DateCalculations
 {
     public class DayOfWeekIntervalHoliday : Holiday
     {
-        public DayOfWeekIntervalHoliday(DateTime start, DateTime end, DayOfWeek dayOfWeek, Day day)
-            : base(day)
+        public DayOfWeekIntervalHoliday(DateTime start, DateTime end, DayOfWeek dayOfWeek, HolidayMetadata metadata)
+            : base(metadata)
         {
             for (var date = start.Date; date.Date <= end.Date; date = date.AddDays(1))
             {

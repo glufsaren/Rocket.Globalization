@@ -1,23 +1,16 @@
-﻿// --------------------------------------------------------------------------------------------------------------------
-// <copyright file="Days.cs" company="Borderline Studios">
-//   Copyright © Borderline Studios. All rights reserved.
-// </copyright>
-// <summary>
-//   Defines the Days type.
-// </summary>
-// --------------------------------------------------------------------------------------------------------------------
+﻿using System;
 
-using System;
+using Rocket.Globalization.DateCalculations;
 
-namespace Rocket.Globalization.Sweden.Holidays
+namespace Rocket.Globalization.Sweden
 {
     public partial class Days
     {
-        private static Day Pentecost
+        public HolidayMetadata Pentecost
         {
             get
             {
-                return new Day(HolidayCode.Pentecost)
+                return new HolidayMetadata(HolidayCode.Pentecost)
                 {
                     Name = "Pingstdagen",
                     WorkTimeReduction = 8,
@@ -26,11 +19,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day PentecostEve
+        public HolidayMetadata PentecostEve
         {
             get
             {
-                return new Day(HolidayCode.PentecostEve)
+                return new HolidayMetadata(HolidayCode.PentecostEve)
                 {
                     Name = "Pingstafton",
                     IsSaturday = true
@@ -38,11 +31,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day PentecostMonday
+        public HolidayMetadata PentecostMonday
         {
             get
             {
-                return new Day(HolidayCode.PentecostMonday)
+                return new HolidayMetadata(HolidayCode.PentecostMonday)
                 {
                     Name = "Annandag pingst",
                     IsSunday = true,
@@ -51,11 +44,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day PentecostTuesday
+        public HolidayMetadata PentecostTuesday
         {
             get
             {
-                return new Day(HolidayCode.PentecostTuesday)
+                return new HolidayMetadata(HolidayCode.PentecostTuesday)
                 {
                     Name = "Tredjedag pingst",
                     IsSunday = true,
@@ -65,11 +58,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day PentecostWednesday
+        public HolidayMetadata PentecostWednesday
         {
             get
             {
-                return new Day(HolidayCode.PentecostWednesday)
+                return new HolidayMetadata(HolidayCode.PentecostWednesday)
                 {
                     Name = "Fjärdedag pingst",
                     IsSunday = true,
@@ -79,11 +72,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day MaundyThursday
+        public HolidayMetadata MaundyThursday
         {
             get
             {
-                return new Day(HolidayCode.MaundyThursday)
+                return new HolidayMetadata(HolidayCode.MaundyThursday)
                 {
                     Name = "Skärtorsdagen",
                     WorkTimeReduction = 4
@@ -91,11 +84,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day GoodFriday
+        public HolidayMetadata GoodFriday
         {
             get
             {
-                return new Day(HolidayCode.GoodFriday)
+                return new HolidayMetadata(HolidayCode.GoodFriday)
                 {
                     Name = "Långfredagen",
                     WorkTimeReduction = 8,
@@ -104,11 +97,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day HolySaturday
+        public HolidayMetadata HolySaturday
         {
             get
             {
-                return new Day(HolidayCode.HolySaturday)
+                return new HolidayMetadata(HolidayCode.HolySaturday)
                 {
                     Name = "Påskafton",
                     IsSaturday = true
@@ -116,11 +109,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day EasterMonday
+        public HolidayMetadata EasterMonday
         {
             get
             {
-                return new Day(HolidayCode.EasterMonday)
+                return new HolidayMetadata(HolidayCode.EasterMonday)
                 {
                     Name = "Annandag påsk",
                     IsSunday = true,
@@ -129,11 +122,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day EasterTuesday
+        public HolidayMetadata EasterTuesday
         {
             get
             {
-                return new Day(HolidayCode.EasterTuesday)
+                return new HolidayMetadata(HolidayCode.EasterTuesday)
                 {
                     Name = "Tredjedag påsk",
                     IsSunday = true,
@@ -143,11 +136,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day EasterWednesday
+        public HolidayMetadata EasterWednesday
         {
             get
             {
-                return new Day(HolidayCode.EasterWednesday)
+                return new HolidayMetadata(HolidayCode.EasterWednesday)
                 {
                     Name = "Fjärdedag påsk",
                     IsSunday = true,
@@ -157,11 +150,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day AscensionThursday
+        public HolidayMetadata AscensionThursday
         {
             get
             {
-                return new Day(HolidayCode.AscensionThursday)
+                return new HolidayMetadata(HolidayCode.AscensionThursday)
                 {
                     Name = "Kristi himmelsfärdsdag",
                     IsSunday = true,
@@ -170,11 +163,11 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static Day Easter
+        public HolidayMetadata Easter
         {
             get
             {
-                return new Day(HolidayCode.Easter)
+                return new HolidayMetadata(HolidayCode.Easter)
                 {
                     Name = "Påskdagen",
                     IsSunday = true
@@ -182,40 +175,46 @@ namespace Rocket.Globalization.Sweden.Holidays
             }
         }
 
-        private static FixedDateHoliday Candlemass(int year)
-        {
-            var day = new Day(HolidayCode.Candlemas)
-            {
-                IsSunday = true,
-                Name = "Kyndelsmässodagen",
-                Introduced = new DateTime(600, 01, 01),
-                Deprecated = new DateTime(1771, 12, 31)
-            };
-
-            return new FixedDateHoliday(day, new DateTime(year, 02, 02));
-        }
-
-        // TODO: Fix!
-        private static DayOfWeekIntervalHoliday Candlemass2(int year)
-        {
-            var day = new Day(HolidayCode.Candlemas)
-            {
-                Name = "Kyndelsmässodagen",
-                Introduced = new DateTime(1772, 01, 01)
-            };
-
-            return new DayOfWeekIntervalHoliday(
-                            new DateTime(year, 02, 02),
-                            new DateTime(year, 02, 08),
-                            DayOfWeek.Sunday,
-                            day);
-        }
-
-        private static Day Quinquagesima
+        public FixedDateHoliday Candlemass
         {
             get
             {
-                return new Day(HolidayCode.Quinquagesima)
+                var day = new HolidayMetadata(HolidayCode.Candlemas)
+                {
+                    IsSunday = true,
+                    Name = "Kyndelsmässodagen",
+                    Introduced = new DateTime(600, 01, 01),
+                    Deprecated = new DateTime(1771, 12, 31)
+                };
+
+                return new FixedDateHoliday(day, new DateTime(_year, 02, 02));
+            }
+        }
+
+        // TODO: Fix!
+        public DayOfWeekIntervalHoliday Candlemass2
+        {
+            get
+            {
+                var day = new HolidayMetadata(HolidayCode.Candlemas)
+                {
+                    Name = "Kyndelsmässodagen",
+                    Introduced = new DateTime(1772, 01, 01)
+                };
+
+                return new DayOfWeekIntervalHoliday(
+                                new DateTime(_year, 02, 02),
+                                new DateTime(_year, 02, 08),
+                                DayOfWeek.Sunday,
+                                day);
+            }
+        }
+
+        public HolidayMetadata Quinquagesima
+        {
+            get
+            {
+                return new HolidayMetadata(HolidayCode.Quinquagesima)
                 {
                     Name = "Fastlagssöndagen"
                 };

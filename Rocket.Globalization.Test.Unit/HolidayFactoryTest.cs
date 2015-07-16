@@ -32,7 +32,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(1889);
 
             var workersDay = holidays.SingleOrDefault(holiday =>
-                    holiday.Code == HolidayCode.WorkersDay);
+                    holiday.Metadata.Code == HolidayCode.WorkersDay);
 
             workersDay.ShouldBeNull();
         }
@@ -47,7 +47,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var eriksDay = holidays.Single(holiday =>
-                    holiday.Code == HolidayCode.EriksDay);
+                    holiday.Metadata.Code == HolidayCode.EriksDay);
 
             eriksDay.Date.ShouldEqual(DateTime.Parse(date));
         }
@@ -62,7 +62,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var thirdDayOfChristmas = holidays.Single(holiday =>
-                    holiday.Code == HolidayCode.ThirdDayOfChristmas);
+                    holiday.Metadata.Code == HolidayCode.ThirdDayOfChristmas);
 
             thirdDayOfChristmas.Date.ShouldEqual(DateTime.Parse(date));
         }
@@ -77,7 +77,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var fourthDayOfChristmas = holidays.Single(holiday =>
-                    holiday.Code == HolidayCode.FourthDayOfChristmas);
+                    holiday.Metadata.Code == HolidayCode.FourthDayOfChristmas);
 
             fourthDayOfChristmas.Date.ShouldEqual(DateTime.Parse(date));
         }
@@ -91,7 +91,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(2004);
 
             var workersDay = holidays.SingleOrDefault(holiday =>
-                    holiday.Code == HolidayCode.NationalDay);
+                    holiday.Metadata.Code == HolidayCode.NationalDay);
 
             workersDay.ShouldBeNull();
         }
@@ -148,10 +148,10 @@ namespace Rocket.Globalization.Test.Unit
                 _newYears = GetHoliday(HolidayCode.NewYear);
 
                 _thirdDayOfChristmas = _holidays.SingleOrDefault(
-                    holiday => holiday.Code == HolidayCode.ThirdDayOfChristmas);
+                    holiday => holiday.Metadata.Code == HolidayCode.ThirdDayOfChristmas);
 
                 _fourthDayOfChristmas = _holidays.SingleOrDefault(
-                    holiday => holiday.Code == HolidayCode.FourthDayOfChristmas);
+                    holiday => holiday.Metadata.Code == HolidayCode.FourthDayOfChristmas);
             }
 
             [Test]
@@ -252,7 +252,7 @@ namespace Rocket.Globalization.Test.Unit
 
             private Holiday GetHoliday(HolidayCode code)
             {
-                return _holidays.Single(holiday => holiday.Code == code);
+                return _holidays.Single(holiday => holiday.Metadata.Code == code);
             }
         }
     }

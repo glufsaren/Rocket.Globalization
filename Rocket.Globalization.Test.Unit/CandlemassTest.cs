@@ -30,7 +30,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(599);
 
             var candlemass = holidays.SingleOrDefault(holiday =>
-                    holiday.Code == HolidayCode.Candlemas);
+                    holiday.Metadata.Code == HolidayCode.Candlemas);
 
             candlemass.ShouldBeNull();
         }
@@ -44,7 +44,7 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year);
 
             var candlemass = holidays.Single(holiday =>
-                   holiday.Code == HolidayCode.Candlemas);
+                   holiday.Metadata.Code == HolidayCode.Candlemas);
 
             candlemass.Date.ShouldEqual(DateTime.Parse(date));
         }
@@ -58,10 +58,10 @@ namespace Rocket.Globalization.Test.Unit
             var holidays = swedishHolidays.Get(year).ToList();
 
             var quinquagesima = holidays.Single(holiday =>
-                   holiday.Code == HolidayCode.Quinquagesima);
+                   holiday.Metadata.Code == HolidayCode.Quinquagesima);
 
             var candlemass = holidays.SingleOrDefault(holiday =>
-                   holiday.Code == HolidayCode.Candlemas);
+                   holiday.Metadata.Code == HolidayCode.Candlemas);
 
             quinquagesima.Date.ShouldEqual(DateTime.Parse(date));
             candlemass.ShouldBeNull();

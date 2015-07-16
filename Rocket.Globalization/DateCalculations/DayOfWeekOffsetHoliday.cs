@@ -9,13 +9,13 @@
 
 using System;
 
-namespace Rocket.Globalization
+namespace Rocket.Globalization.DateCalculations
 {
     // TODO: Denna måste dokumenteras bättre!
-    public class DayOfWeekOffsetHoliday : Holiday
+    internal class DayOfWeekOffsetHoliday : Holiday
     {
-        public DayOfWeekOffsetHoliday(DayOfWeek dayOfWeek, DateTime dateTime, int number, Day day)
-            : base(day)
+        private DayOfWeekOffsetHoliday(DayOfWeek dayOfWeek, DateTime dateTime, int number, HolidayMetadata metadata)
+            : base(metadata)
         {
             DayOfWeek = dayOfWeek;
             DateTime = dateTime;
@@ -54,13 +54,5 @@ namespace Rocket.Globalization
         public DateTime DateTime { get; set; }
 
         public int Number { get; set; }
-    }
-
-    internal static class Ext
-    {
-        public static DayOfWeekNegative ToDayOfWeek(this DayOfWeek dayOfWeek)
-        {
-            return (DayOfWeekNegative)Enum.Parse(typeof(DayOfWeekNegative), dayOfWeek.ToString());
-        }
     }
 }

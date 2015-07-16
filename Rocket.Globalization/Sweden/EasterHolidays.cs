@@ -7,9 +7,8 @@
 // </summary>
 // --------------------------------------------------------------------------------------------------------------------
 
-using System;
-
 using Rocket.Globalization.Computus;
+using Rocket.Globalization.DateCalculations;
 
 namespace Rocket.Globalization.Sweden
 {
@@ -18,45 +17,47 @@ namespace Rocket.Globalization.Sweden
     {
         protected override void AddHolidays(int year)
         {
+            var days = new Days(year);
+
             var easter = GetEaster(year);
 
-            var pentecost = 7.Th().Sunday().After(easter).Is(Pentecost);
+            var pentecost = 7.Th().Sunday().After(easter).Is(days.Pentecost);
 
-            1.Th().Monday().After(pentecost).Is(PentecostMonday)
+            1.Th().Monday().After(pentecost).Is(days.PentecostMonday)
                 .Modify(holiday =>
                     {
-                        holiday.WorkTimeReduction = year > 2004 ? 0 : 8;
+                        holiday.Metadata.WorkTimeReduction = year > 2004 ? 0 : 8;
                     });
 
-            1.Th().Tuesday().After(pentecost).Is(PentecostTuesday);
-            1.Th().Wednesday().After(pentecost).Is(PentecostWednesday);
+            1.Th().Tuesday().After(pentecost).Is(days.PentecostTuesday);
+            1.Th().Wednesday().After(pentecost).Is(days.PentecostWednesday);
 
             easter.AddDependency(pentecost);
 
-            1.St().Saturday().Before(pentecost).Is(PentecostEve);
+            1.St().Saturday().Before(pentecost).Is(days.PentecostEve);
 
-            1.St().Thursday().Before(easter).Is(MaundyThursday)
+            1.St().Thursday().Before(easter).Is(days.MaundyThursday)
                 .Modify(holiday =>
                         {
-                            holiday.IsSunday = year <= 1771;
-                            holiday.WorkTimeReduction = year > 1771 ? 0 : 8;
+                            holiday.Metadata.IsSunday = year <= 1771;
+                            holiday.Metadata.WorkTimeReduction = year > 1771 ? 0 : 8;
                         });
 
 
-            1.St().Friday().Before(easter).Is(GoodFriday);
-            1.St().Saturday().Before(easter).Is(HolySaturday);
+            1.St().Friday().Before(easter).Is(days.GoodFriday);
+            1.St().Saturday().Before(easter).Is(days.HolySaturday);
 
-            1.St().Monday().After(easter).Is(EasterMonday);
-            1.St().Tuesday().After(easter).Is(EasterTuesday);
-            1.St().Wednesday().After(easter).Is(EasterWednesday);
+            1.St().Monday().After(easter).Is(days.EasterMonday);
+            1.St().Tuesday().After(easter).Is(days.EasterTuesday);
+            1.St().Wednesday().After(easter).Is(days.EasterWednesday);
 
-            6.Th().Thursday().After(easter).Is(AscensionThursday);
+            6.Th().Thursday().After(easter).Is(days.AscensionThursday);
 
-            var quinquagesima = 49.Days().Before(easter).IsX(Quinquagesima);
+            var quinquagesima = 49.Days().Before(easter).IsX(days.Quinquagesima);
 
-            _holidays.Add(Candlemass(year));
+            _holidays.Add(days.Candlemass);
 
-            var dayOfWeekIntervalHoliday = Candlemass2(year);
+            var dayOfWeekIntervalHoliday = days.Candlemass2;
 
             if (quinquagesima.Date != dayOfWeekIntervalHoliday.Date)
             {
@@ -68,10 +69,12 @@ namespace Rocket.Globalization.Sweden
 
         private static FixedDateHoliday GetEaster(int year)
         {
+            var days = new Days(year);
+
             var easterDate =
                 new GaussAlgorithmComputus().GetDate(year);
 
-            return new FixedDateHoliday(Easter, easterDate);
+            return new FixedDateHoliday(days.Easter, easterDate);
         }
     }
 }
