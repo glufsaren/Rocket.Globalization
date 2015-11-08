@@ -1,4 +1,13 @@
-﻿using System;
+﻿// --------------------------------------------------------------------------------------------------------------------
+// <copyright file="EasterDays.cs" company="Borderline Studios">
+//   Copyright © Borderline Studios. All rights reserved.
+// </copyright>
+// <summary>
+//   Defines the Days type.
+// </summary>
+// --------------------------------------------------------------------------------------------------------------------
+
+using System;
 
 using Rocket.Globalization.DateCalculations;
 

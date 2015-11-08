@@ -9,8 +9,8 @@
 
 namespace Rocket.Globalization
 {
-	public enum Country
-	{
-		Sweden
-	}
+    public enum Country
+    {
+        Sweden
+    }
 }
