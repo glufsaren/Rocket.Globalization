@@ -23,14 +23,14 @@ namespace Rocket.Globalization.Sweden
 
             var pentecost = 7.Th().Sunday().After(easter).Is(days.Pentecost);
 
-            1.Th().Monday().After(pentecost).Is(days.PentecostMonday)
+            1.St().Monday().After(pentecost).Is(days.PentecostMonday)
                 .Modify(holiday =>
                     {
                         holiday.Metadata.WorkTimeReduction = year > 2004 ? 0 : 8;
                     });
 
-            1.Th().Tuesday().After(pentecost).Is(days.PentecostTuesday);
-            1.Th().Wednesday().After(pentecost).Is(days.PentecostWednesday);
+            1.St().Tuesday().After(pentecost).Is(days.PentecostTuesday);
+            1.St().Wednesday().After(pentecost).Is(days.PentecostWednesday);
 
             easter.AddDependency(pentecost);
 
@@ -43,7 +43,6 @@ namespace Rocket.Globalization.Sweden
                             holiday.Metadata.WorkTimeReduction = year > 1771 ? 0 : 8;
                         });
 
-
             1.St().Friday().Before(easter).Is(days.GoodFriday);
             1.St().Saturday().Before(easter).Is(days.HolySaturday);
 
@@ -53,7 +52,7 @@ namespace Rocket.Globalization.Sweden
 
             6.Th().Thursday().After(easter).Is(days.AscensionThursday);
 
-            var quinquagesima = 49.Days().Before(easter).IsX(days.Quinquagesima);
+            var quinquagesima = 49.Days().Before(easter).Is(days.Quinquagesima);
 
             _holidays.Add(days.Candlemass);
 

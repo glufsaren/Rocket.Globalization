@@ -114,22 +114,20 @@ namespace Rocket.Globalization.DateCalculations
             return param;
         }
 
-        public static DayOfWeekOffsetHoliday Is(this Parameters parameters, HolidayMetadata day)
+        public static Holiday Is(this Parameters parameters, HolidayMetadata day)
         {
             parameters.Day = day;
 
-            var holiday = new DayOfWeekOffsetHoliday(parameters);
+            Holiday holiday;
 
-            parameters.Parent.AddDependency(holiday);
-
-            return holiday;
-        }
-
-        public static NumberOfDaysOffsetHoliday IsX(this Parameters parameters, HolidayMetadata day)
-        {
-            parameters.Day = day;
-
-            var holiday = new NumberOfDaysOffsetHoliday(parameters.Date, parameters.Days, day);
+            if (parameters.Days == 0)
+            {
+                holiday = new DayOfWeekOffsetHoliday(parameters);
+            }
+            else
+            {
+                holiday = new NumberOfDaysOffsetHoliday(parameters.Date, parameters.Days, day);
+            }
 
             parameters.Parent.AddDependency(holiday);
 

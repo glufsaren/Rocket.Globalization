@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+	<metadata>
+		<id>Rocket.Globalization.Computus</id>
+		<version>1.0.0.0</version>
+		<title>Rocket.Globalization.Computus</title>
+		<authors>John Tjust</authors>
+		<owners>John Tjust</owners>
+		<licenseUrl>http://apache.org/licenses/LICENSE-2.0</licenseUrl>
+		<projectUrl>https://bitbucket.org/glufsaren/rocket/overview</projectUrl>
+		<iconUrl>https://bytebucket.org/glufsaren/rocket.globalization/raw/f8bae81466caec9f507d3193b19245061c234608/Logo_icon.png</iconUrl>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<description>Computus is the calculation used to determine the calendar date of Easter.</description>
+		<releaseNotes>Summary of changes made in this release of the package.</releaseNotes>
+		<copyright>Copyright 2015</copyright>
+		<tags>Computus Easter Gauss Algorithm</tags>
+	</metadata>
+	<files>
+		<file src="bin\Release\Rocket.Globalization.Computus.dll" target="lib\Rocket.Globalization.Computus.dll" />
+	</files>
+</package>

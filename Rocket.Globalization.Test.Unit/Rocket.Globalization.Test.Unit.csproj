@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Rocket.Globalization.Test.Unit</RootNamespace>
     <AssemblyName>Rocket.Globalization.Test.Unit</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -54,6 +54,10 @@
     <ProjectReference Include="..\..\rocket\Rocket.Test\Rocket.Test.csproj">
       <Project>{3AD629B7-6D2F-42AB-920B-CD847AE97020}</Project>
       <Name>Rocket.Test</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Rocket.Globalization.Computus\Rocket.Globalization.Computus.csproj">
+      <Project>{180ad93c-7580-4ca7-a8f2-c84c52782463}</Project>
+      <Name>Rocket.Globalization.Computus</Name>
     </ProjectReference>
     <ProjectReference Include="..\Rocket.Globalization\Rocket.Globalization.csproj">
       <Project>{AC7B4FBB-608B-4250-A0AE-E1AF784909DE}</Project>
