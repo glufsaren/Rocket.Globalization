@@ -21,7 +21,7 @@ namespace Rocket.Globalization.Sweden
 
             var easter = GetEaster(year);
 
-            var pentecost = 7.Th().Sunday().After(easter).Is(days.Pentecost);
+            var pentecost = 7.Th().Sunday().After(easter).Is(Days.Pentecost);
 
             1.St().Monday().After(pentecost).Is(days.PentecostMonday)
                 .Modify(holiday =>
