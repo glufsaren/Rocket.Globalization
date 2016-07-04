@@ -15,18 +15,12 @@ namespace Rocket.Globalization.Sweden
 {
     public partial class Days
     {
-        public HolidayMetadata Pentecost
-        {
-            get
-            {
-                return new HolidayMetadata(HolidayCode.Pentecost)
-                {
-                    Name = "Pingstdagen",
-                    WorkTimeReduction = 8,
-                    IsSunday = true
-                };
-            }
-        }
+        public static HolidayMetadata Pentecost => new HolidayMetadata(HolidayCode.Pentecost)
+                                                {
+                                                    Name = "Pingstdagen",
+                                                    WorkTimeReduction = 8,
+                                                    IsSunday = true
+                                                };
 
         public HolidayMetadata PentecostEve
         {
